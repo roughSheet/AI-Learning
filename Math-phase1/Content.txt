@@ -1,1 +1,29 @@
+Scalars, vectors, and matrices — what they are
 
+- Scalers  - these are called single value 
+    like int age = 28;
+
+    anything which is single value is called scaler 
+
+- Vector — an ordered list of numbers
+    But here's the key insight — the position of each number means something.
+    Imagine you're modeling a user:
+    [likes_sports, likes_cooking, likes_tech, likes_travel]
+    [    0.8,          0.2,          0.95,       0.4      ]
+
+    This vector represents a person. Two users with similar vectors are similar people. 
+    This is the foundation of how AI represents meaning.
+
+    A vector also has a direction and magnitude — think of an arrow in space. 
+    More on why that matters when we hit embeddings.
+
+    embeddings  - finding similarity btw two words like dog and puppy are more same
+    then dog and cat so the vector of dog and puppy will be more close value then the car.
+
+Scalar     →    one number          →    28
+Vector     →    array of numbers    →    [0.8, 0.2, 0.95]
+Matrix     →    grid of numbers     →    [[...], [...], [...]]
+
+There's also tensor — which is just an N-dimensional version of this. A 3D array is a tensor. 
+When people say "TensorFlow", the tensor part literally means this. 
+You'll see tensors when batching multiple matrices together.
