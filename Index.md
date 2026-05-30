@@ -1,30 +1,30 @@
 Phase 1 — Intuition math (just enough)
 
 Scalars, vectors, and matrices — what they are\
-Matrix multiplication — how it works conceptually
-What "dimensions" mean in data
-Dot product — what it measures
-Probability basics — distributions, mean, variance
-What a function is (input → output) and what "optimizing" a function means
-Softmax — turning numbers into probabilities
-Log and exponential functions — why they show up everywhere in ML
+Matrix multiplication — how it works conceptually\
+What "dimensions" mean in data\
+Dot product — what it measures\
+Probability basics — distributions, mean, variance\
+What a function is (input → output) and what "optimizing" a function means\
+Softmax — turning numbers into probabilities\
+Log and exponential functions — why they show up everywhere in ML\
 
 
-Phase 2 — How LLMs work
+Phase 2 — How LLMs work\
 
-What a neural network is — layers, weights, activations
-How a model "learns" — forward pass, loss, backward pass (conceptual only)
-What training data is and why it shapes model behavior
-Tokenization — how text becomes numbers, BPE, why "1000 words ≠ 1000 tokens"
-What an embedding is — vectors as meaning
-Self-attention — how a model relates words to each other
-The transformer architecture — conceptual overview
-Context window — what it is, what happens when you exceed it
-KV cache — why it exists, what it saves
-Pre-training vs fine-tuning vs RLHF — what each changes
-Base model vs instruct model vs chat model — the differences
-Hallucination — why it happens mechanically
-Temperature and sampling — top-k, top-p, greedy decoding
+What a neural network is — layers, weights, activations\
+How a model "learns" — forward pass, loss, backward pass (conceptual only)\
+What training data is and why it shapes model behavior\
+Tokenization — how text becomes numbers, BPE, why "1000 words ≠ 1000 tokens"\
+What an embedding is — vectors as meaning\
+Self-attention — how a model relates words to each other\
+The transformer architecture — conceptual overview\
+Context window — what it is, what happens when you exceed it\
+KV cache — why it exists, what it saves\
+Pre-training vs fine-tuning vs RLHF — what each changes\
+Base model vs instruct model vs chat model — the differences\
+Hallucination — why it happens mechanically\
+Temperature and sampling — top-k, top-p, greedy decoding\
 
 
 Phase 3 — Prompt engineering
