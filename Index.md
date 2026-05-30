@@ -1,6 +1,6 @@
 Phase 1 — Intuition math (just enough)
 
-Scalars, vectors, and matrices — what they are
+Scalars, vectors, and matrices — what they are\
 Matrix multiplication — how it works conceptually
 What "dimensions" mean in data
 Dot product — what it measures
