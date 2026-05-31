@@ -27,3 +27,59 @@ Matrix     →    grid of numbers     →    [[...], [...], [...]]
 There's also tensor — which is just an N-dimensional version of this. A 3D array is a tensor. 
 When people say "TensorFlow", the tensor part literally means this. 
 You'll see tensors when batching multiple matrices together.
+
+-------------------------------------------------------------------------------------
+
+Matrix multiplication
+
+    A is (2 × 3)
+    B is (3 × 2)
+            ↑ ↑
+            must match → result is (2 × 2)
+    
+    this is called dot product 
+
+
+--------------------------------------------------------------------------------
+
+Topic 3 — What "Dimensions" Mean in Data
+
+In AI, dimension = the number of values used to describe one thing.
+
+Concrete example — a user profile
+Say you describe each user with 4 numbers:
+[age, income, session_length, purchase_count]
+[28,  75000,  12.5,           3             ]
+This user lives in 4-dimensional space. You can't visualize 4D — that's fine. The math works regardless.
+
+Why dimensionality matters in AI
+Higher dimensions = richer description
+A word embedding in a real LLM isn't 4-dimensional. It's 768, 1536, or 3072 dimensions.
+The word "bank" might be represented as a 768-dimension vector. Those 768 numbers capture:
+
+Is it related to finance?
+Is it related to rivers?
+Is it a noun or verb?
+What words appear near it?
+
+More dimensions = more nuance the model can store. (meaning of nuance the smaller difference between two things)
+
+Your data matrix has two dimension counts — don't mix them up
+Training dataset: 10,000 rows × 768 columns
+
+10,000 = number of samples (users, sentences, images, inputs)
+768    = number of features per sample (the dimensionality)
+
+The curse of dimensionality — one thing to know
+As dimensions grow, data gets sparse.
+Simple example — if you have users on a 1D line (just age), two users aged 25 and 27 are close together. Add 767 more dimensions and suddenly everyone is far apart from everyone else.
+This is why in AI you sometimes reduce dimensions — compressing 768D down to 2D just for visualization, or compressing 10,000D down to 256D to remove noise.
+You'll see this come up again in embeddings and vector search.
+
+The three ways "dimensions" gets used in AI conversations
+    When someone says                                       They mean
+"This embedding is 768-dimensional"         Each item is described by 768 numbers
+"The input dimension is 512"                The model expects 512 numbers as input
+"Reduce the dimensionality"                 Compress to fewer numbers while keeping meaning
+
+---------------------------------------------------------------------------------------------------
