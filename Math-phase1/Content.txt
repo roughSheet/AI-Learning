@@ -83,3 +83,77 @@ The three ways "dimensions" gets used in AI conversations
 "Reduce the dimensionality"                 Compress to fewer numbers while keeping meaning
 
 ---------------------------------------------------------------------------------------------------
+
+Topic 4 — Dot Product
+
+What it actually measures — this is the insight
+The dot product measures how much two vectors point in the same direction.
+Result                      Meaning
+Large positive      Vectors point same direction — very similar
+Near zero           Vectors are unrelated — perpendicular
+Large negative      Vectors point opposite directions — very different
+
+The connection to LLMs — preview
+When you type a query and the LLM searches its knowledge:
+Your query    → converted to a vector
+Every concept the model knows → also vectors
+
+Dot product of query with each concept
+→ highest scores = most relevant concepts
+→ model focuses attention there
+
+-------------------------------------------------------------------
+
+Topic 4 - Probabilities Basics 
+
+it's just basics of all terms used in probaility 
+
+probaility - 
+P(event) = value between 0 and 1
+
+0   = impossible
+1   = certain
+0.7 = happens 70% of the time
+
+
+Distribution - 
+A distribution is when you assign probabilities to every possible outcome, and they all add up to 1.
+Simple example — next word prediction after "I drink coffee every":
+"morning"  → 0.50
+"day"      → 0.25
+"night"    → 0.15
+"hour"     → 0.08
+"week"     → 0.02
+            ------
+Total       = 1.00  ← always sums to 1
+
+Mean - 
+Mean — the average, but think of it as "center of gravity"
+Scores = [60, 70, 80, 90, 100]
+
+Mean = (60 + 70 + 80 + 90 + 100) / 5 = 80
+
+Variance - 
+Variance — how spread out the values are
+Group A scores: [78, 79, 80, 81, 82]  → mean=80, low variance
+Group B scores: [20, 50, 80, 95, 99]  → mean=80, high variance
+Same mean, completely different distributions.
+In AI this matters because:
+Low variance model  → gives similar confident answers every time
+High variance model → unpredictable, sometimes brilliant, sometimes wrong
+
+
+Conditional probability-
+Conditional probability — the core of language modeling
+P(B | A) means "probability of B given A already happened"
+LLMs are entirely built on this:
+P("morning" | "I drink coffee every")  = 0.50
+P("day"     | "I drink coffee every")  = 0.25
+Every token is predicted using all previous tokens as context. 
+The entire transformer architecture is a machine for computing this conditional probability efficiently.
+
+---------------------------------------------------------------------------------
+
+
+
+
