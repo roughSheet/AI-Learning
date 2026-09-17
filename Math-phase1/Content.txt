@@ -104,7 +104,7 @@ Dot product of query with each concept
 
 -------------------------------------------------------------------
 
-Topic 4 - Probabilities Basics 
+Topic 5 - Probabilities Basics 
 
 it's just basics of all terms used in probaility 
 
@@ -154,6 +154,174 @@ The entire transformer architecture is a machine for computing this conditional 
 
 ---------------------------------------------------------------------------------
 
+Topic 6- What a function is (input → output) and what "optimizing" a function means
 
+In AI, there's a special function called the loss function (also called cost function).
 
+It measures the gap between what the model predicted and what the correct answer was.
+
+------------------------------------------------------------------------------
+
+Topic 7 -  SoftMax
+
+The problem it solves
+
+After a neural network does its matrix multiplications, you get raw scores called logits. These are just arbitrary numbers — can be negative, can be huge, don't sum to anything meaningful.
+
+Raw logits after processing "The capital of France is":
+
+"Paris"   →  8.2
+"London"  →  2.1
+"Berlin"  →  1.4
+"Lyon"    →  0.9
+
+These aren't probabilities yet. 8.2 doesn't mean 82%. You need them to:
+
+All be between 0 and 1
+Sum to exactly 1
+
+That's what softmax does.
+
+What softmax does — step by step
+
+Step 1 — Exponentiate every number (raise e to the power of each)
+
+e^8.2  =  3640.9
+e^2.1  =    8.2
+e^1.4  =    4.1
+e^0.9  =    2.5
+
+Sum    =  3655.7
+
+Step 2 — Divide each by the sum
+
+Paris   →  3640.9 / 3655.7  =  0.996
+London  →     8.2 / 3655.7  =  0.002
+Berlin  →     4.1 / 3655.7  =  0.001
+Lyon    →     2.5 / 3655.7  =  0.001
+                              -------
+                              1.000  ✅
+
+Now you have a valid probability distribution.
+
+The key behavior of softmax — amplification
+
+Notice what happened. The raw scores weren't that far apart:
+
+Paris  8.2  vs  London  2.1  → ratio of ~4x
+
+After softmax:
+
+Paris  0.996  vs  London  0.002  → ratio of ~500x
+
+Softmax amplifies the winner and crushes the losers.
+
+This is intentional. Small differences in raw scores become large differences in probability. The model becomes decisive.
+
+Why exponentiation specifically?
+
+Two reasons:
+
+1 — e^x is always positive
+    No matter how negative the logit, probability stays above 0
+    Every word always has some tiny chance
+
+2 — e^x grows fast
+    Bigger logit → exponentially bigger probability
+    Creates that amplification effect
+
+This connects to the next topic — log and exponential functions — which is why they appear everywhere in ML.
+
+-----------------------------------------------------------------------------
+
+topic 8  -Log and Exponential Functions
+
+Exponential — e^x
+
+e is just a number — approximately 2.718
+
+e^0  =  1
+e^1  =  2.718
+e^2  =  7.389
+e^3  = 20.086
+e^10 = 22026
+
+Key behavior — grows explosively, always stays positive.
+
+No matter how negative your input:
+
+e^-100  =  a very tiny number, but never zero or negative
+
+This is why softmax uses it — guarantees all probabilities stay positive.
+
+Logarithm — the inverse of exponential
+
+If e^x asks "what do I get if I raise e to power x?"
+
+Log asks the reverse — "what power do I need to raise e to, in order to get x?"
+
+e^3  = 20.086  →  log(20.086) = 3
+e^2  =  7.389  →  log(7.389)  = 2
+e^1  =  2.718  →  log(2.718)  = 1
+e^0  =  1      →  log(1)      = 0
+
+They undo each other — like Math.sqrt() and Math.pow(x, 2) in Java.
+
+Key behavior of log — shrinks large numbers
+log(1)      =  0
+log(10)     =  2.3
+log(100)    =  4.6
+log(1000)   =  6.9
+log(10000)  =  9.2
+
+Numbers exploding from 1 to 10,000 — log compresses them to 0 to 9.2.
+
+This is the core utility — when numbers span huge ranges, log brings them to a manageable scale.
+
+Where they show up in ML — three places
+1 — Loss function (log)
+
+The standard loss function for classification is called cross-entropy loss:
+
+Loss = -log(probability assigned to correct answer)
+
+Real example:
+
+Correct answer is "Paris"
+
+Model A gives:  P("Paris") = 0.99  →  Loss = -log(0.99) = 0.01  ← tiny loss, good
+Model B gives:  P("Paris") = 0.01  →  Loss = -log(0.01) = 4.60  ← huge loss, bad
+
+The log naturally punishes wrong confident answers heavily and rewards correct confident answers.
+
+2 — Probability multiplication becomes addition (log)
+
+Say you want probability of a full sentence:
+
+P("I love Java") = P("I") × P("love"|"I") × P("Java"|"I love")
+
+= 0.3 × 0.2 × 0.15
+
+= 0.009
+
+Multiply enough small probabilities → number becomes microscopic → floating point underflow in your Java system. The number literally becomes 0.0 in memory.
+
+Log fixes this:
+
+log(A × B × C)  =  log(A) + log(B) + log(C)
+
+Multiplication becomes addition. No underflow. This is why LLMs work in log probabilities internally.
+
+3 — Exponential in softmax (e^x)
+
+You already saw this. Raw logits → exponentiate → normalize → probabilities.
+
+The relationship visually — in plain terms
+e^x   →  small differences become huge differences  (amplify)
+log   →  huge differences become small differences  (compress)
+
+They're opposites — and ML uses both deliberately:
+
+Softmax output    →  e^x amplifies the winner
+Loss calculation  →  log compresses the range back to something trainable
 
